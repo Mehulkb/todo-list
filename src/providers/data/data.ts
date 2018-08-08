@@ -8,6 +8,10 @@ export class Data {
  
   }
  
+  get windowRef() {
+    return window;
+  }
+  
   getData() {
     return this.storage.get('todos');  
   }

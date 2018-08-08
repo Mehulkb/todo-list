@@ -16,6 +16,7 @@ import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Data } from '../providers/data/data';
+import { AuthProvider } from '../providers/auth/auth';
 //import {AngularFireModule} from 'angularfire2';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -51,7 +52,8 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     AddItemPage,
     ItemDetailPage,
-    LoginPage
+    LoginPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     AddItemPage,
     ItemDetailPage,
-    LoginPage
+    LoginPage,
+    
   ],
   providers: [
     StatusBar,
@@ -75,6 +78,7 @@ export class MyErrorHandler implements ErrorHandler {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Data,
     Camera,
+    AuthProvider,
   ]
 })
 export class AppModule { }
