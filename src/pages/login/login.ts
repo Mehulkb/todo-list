@@ -46,7 +46,7 @@ this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.R
         
         document.addEventListener('onSMSArrive', (e:any)=>{
              var sms = e.data;
-             alert(sms);
+             alert(sms.body);
       
              });
           
