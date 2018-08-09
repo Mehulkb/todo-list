@@ -5,7 +5,8 @@ import firebase from 'firebase';
 import { ToastController } from 'ionic-angular';
 import { Data } from '../../providers/data/data';
 import { HomePage } from '../home/home';
-var SMS;
+import { AndroidPermissions } from '../../../node_modules/@ionic-native/android-permissions';
+declare var SMS: any;
 
 @Component({
   selector: 'page-login',
@@ -14,13 +15,61 @@ var SMS;
 export class LoginPage {
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   smsSent: boolean = false;
-  windowRef: any;
+  messages:any=[];
+  platform: any;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toastCtrl: ToastController, public dat: Data) {}
+  constructor(public navCtrl: NavController, public androidPermissions: AndroidPermissions, public alertCtrl: AlertController, public toastCtrl: ToastController, public dat: Data) {}
 
   ionViewDidLoad() {
     this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
   }
+
+  checkPermission()
+  {
+        this.androidPermissions.checkPermission
+        (this.androidPermissions.PERMISSION.READ_SMS).then(
+        success => {
+                  
+            //if permission granted
+            this.ReadSMSList();
+        },
+        err =>{
+                
+            this.androidPermissions.requestPermission
+            (this.androidPermissions.PERMISSION.READ_SMS).
+            then(success=>{
+                this.ReadSMSList();
+            },
+            err=>{
+                alert("cancelled")
+            });
+        });
+
+        this.androidPermissions.requestPermissions
+        ([this.androidPermissions.PERMISSION.READ_SMS]);
+              
+        }
+        ReadSMSList()
+        {
+            
+            this.platform.ready().then((readySource) => {
+                
+            let filter = {
+            box : 'inbox', // 'inbox' (default), 'sent', 'draft'
+            indexFrom : 0, // start from index 0
+            maxCount : 1, // count of SMS to return each time
+            };
+                
+            if(SMS) SMS.listSMS(filter, (ListSms)=>{               
+            this.messages=ListSms
+            },
+            Error=>{
+              alert(JSON.stringify(Error))
+              });
+                  
+          });
+    }
+
 
   signIn(phoneNumber: number){
    const appVerifier = this.recaptchaVerifier;
@@ -30,17 +79,7 @@ export class LoginPage {
 
       });
       
-        if(SMS) SMS.startWatch(function(){
-          console.log('watching', 'watching started');
-        }, function(){
-          console.log('failed to start watching');
-        });
-      
-        document.addEventListener('onSMSArrive', function(e:any){
-          var sms = e.data;
-          alert(sms);
-          console.log(sms);
-        });
+        
       
             
   }

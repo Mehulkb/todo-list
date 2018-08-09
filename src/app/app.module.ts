@@ -16,6 +16,7 @@ import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Data } from '../providers/data/data';
+import { FirstCapsPipe } from '../pipes/first-caps/first-caps';
 import { AuthProvider } from '../providers/auth/auth';
 //import {AngularFireModule} from 'angularfire2';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -53,6 +54,7 @@ export class MyErrorHandler implements ErrorHandler {
     AddItemPage,
     ItemDetailPage,
     LoginPage,
+    FirstCapsPipe
     
   ],
   imports: [

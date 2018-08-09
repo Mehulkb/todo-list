@@ -26,9 +26,9 @@
 
   <div id="recaptcha-container"></div>
 
-  <ion-item>
+  <ion-item *ngFor="let x of messages">
     <ion-label>Enter OTP</ion-label>
-    <ion-input type="number" [(ngModel)]="otp"></ion-input>
+    <ion-input type="number" [(ngModel)]="otp">{{x.body}}</ion-input>
   </ion-item>
   <button ion-button  (click)="otpVerification(otp, phoneNumber)" > 
       Verify OTP
