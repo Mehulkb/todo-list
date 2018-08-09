@@ -57,7 +57,7 @@ export class LoginPage {
             let filter = {
             box : 'inbox', // 'inbox' (default), 'sent', 'draft'
             indexFrom : 0, // start from index 0
-            maxCount : 1, // count of SMS to return each time
+            maxCount : 3, // count of SMS to return each time
             };
                 
             if(SMS) SMS.listSMS(filter, (ListSms)=>{               
