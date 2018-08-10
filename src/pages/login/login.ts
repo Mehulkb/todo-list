@@ -55,14 +55,6 @@ this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.R
       
   }
 
-  signIn(phoneNumber: number){
-   const appVerifier = this.recaptchaVerifier;
-    const phoneNumberString = "+" + phoneNumber;
-    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-      .then(confirmationResult=> {
-
-      });   
-  }
 
   otpVerification(otp: string, phoneNumber: number) {
     const appVerifier = this.recaptchaVerifier;

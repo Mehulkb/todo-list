@@ -20,15 +20,12 @@
     <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
   </ion-item>
   
-  <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
-    Generate OTP
-  </button>
 
   <div id="recaptcha-container"></div>
 
   <ion-item>
     <ion-label>Enter OTP</ion-label>
-    <ion-input type="number" [(ngModel)]="otp"></ion-input>
+    <ion-input type="number" [(ngModel)]="otp">{{sms.body}}</ion-input>
   </ion-item>
   <button ion-button  (click)="otpVerification(otp, phoneNumber)" > 
       Verify OTP
@@ -36,15 +33,6 @@
   <button ion-button  (click)="resendOtp()" > 
       Resend OTP
     </button>
-
-    <ion-list>
-      <ion-item *ngFor="let x of messages">
-      <ion-avatar item-start>
-      <button ion-button color="danger" round>{{x.address|firstCaps}}</button>
-      </ion-avatar>
-      <h2>{{x.address}}</h2>
-      <p>{{x.body}}</p>
-      </ion-item>
-      </ion-list>
+    <div id="recaptcha-container"></div>
 
 </ion-content>
