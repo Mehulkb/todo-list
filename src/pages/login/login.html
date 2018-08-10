@@ -19,13 +19,9 @@
     <ion-label stacked>Phone Number</ion-label>
     <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
   </ion-item>
-  
-
-  <div id="recaptcha-container"></div>
-
   <ion-item>
-    <ion-label>Enter OTP</ion-label>
-    <ion-input type="number" [(ngModel)]="otp">{{sms.body}}</ion-input>
+    <ion-label stacked>Enter OTP</ion-label>
+    <ion-input type="number" [(ngModel)]="otp"></ion-input>
   </ion-item>
   <button ion-button  (click)="otpVerification(otp, phoneNumber)" > 
       Verify OTP
